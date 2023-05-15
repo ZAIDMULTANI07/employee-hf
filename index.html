@@ -27,8 +27,19 @@
                         <input class='border rounded-xl p-2' type="text" placeholder="Type to Search" id="search" name="search">
                         <button class="ml-2" type="submit">Search</button>
                     </form>
-
-                <h3 class="flex justify-end items-end mr-2 mt-2">Navigation Menu</h3>
+                    <div class="relative">
+                        <h3 class="flex justify-end items-end mr-2 mt-2 cursor-pointer sm:hidden" onclick="toggleNav()">☰ Navigation Menu</h3>
+                        <aside id="nav-menu" class="absolute right-0 top-8 w-80 bg-gray-200 rounded-lg p-2 hidden sm:block">
+                          <ul>
+                            <li>
+                              <a href="/employee-registration.html">Employee Registeration Page</a>
+                            </li>
+                            <li>
+                              <a href="/employee-listing.html">Employee Listing Page</a>
+                            </li>
+                          </ul>
+                        </aside>
+                      </div>
             </div>
         </div>
     </header>
