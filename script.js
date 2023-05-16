@@ -5,7 +5,7 @@ function toggleNav() {
   }
   
   const employeeForm = document.getElementById('employee-form');
-
+  
 employeeForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -33,11 +33,16 @@ employeeForm.addEventListener('submit', (event) => {
   }
 
   employees.push(employeeData);
-
   localStorage.setItem('employees', JSON.stringify(employees));
-
   window.location.href = '/employee-listing.html';
 });
+
+// const employeeNameSpan = document.getElementById('employee-name');
+// employeeForm.addEventListener('submit',(e)=> {
+//   e.preventDefault();
+//   const name = document.getElementById('name').value;
+//   employeeNameSpan.textContent = name;
+// })
 
 //EMPLOYEE-LISTING
 // get the table element
