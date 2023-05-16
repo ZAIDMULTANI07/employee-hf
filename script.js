@@ -38,13 +38,6 @@ employeeForm.addEventListener('submit', (event) => {
   window.location.href = '/employee-listing.html';
 });
 
-// const employeeNameSpan = document.getElementById('employee-name');
-// employeeForm.addEventListener('submit',(e)=> {
-//   e.preventDefault();
-//   const name = document.getElementById('name').value;
-//   employeeNameSpan.textContent = name;
-// })
-
 //EMPLOYEE-LISTING
 // get the table element
 const table = document.getElementById('employee-table');
@@ -66,39 +59,5 @@ table.addEventListener('click', function(event) {
   }
 });
 
-
-// const searchForm = document.getElementById('search-form');
-// const searchInput = document.getElementById('search');
-
-// searchForm.addEventListener('submit', function (event) {
-//   event.preventDefault();
-
-//   const searchValue = searchInput.value;
-
-//   if (window.find && window.getSelection) {
-//     document.designMode = 'on';
-//     const sel = window.getSelection();
-//     sel.removeAllRanges();
-//     const range = document.createRange();
-//     range.selectNode(document.body);
-//     sel.addRange(range);
-//     const found = window.find(searchValue);
-//     if (!found) {
-//       alert(`No results found for "${searchValue}".`);
-//     }
-//     document.designMode = 'off';
-//   } else {
-//     alert('Your browser does not support this search functionality.');
-//   }
-// });
-
-const searchForm = document.getElementById('search-form');
-searchForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const searchTerm = document.getElementById('search').value;
-  if (searchTerm) {
-    window.find(searchTerm);
-  }
-});
 
 
