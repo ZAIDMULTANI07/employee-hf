@@ -20,6 +20,41 @@ employeeForm.addEventListener('submit', (event) => {
     return;
   }
 
+
+  // Validation for name field
+  if (name.length < 3 || /[^a-zA-Z\s]/.test(name)) {
+    alert('Name should be at least 3 characters long and should not contain special characters.');
+    nameInput.focus();
+    return;
+  }
+
+  // Validation for position field
+  if (position.length === 0 || /^[^a-zA-Z0-9\s]+$/.test(position)) {
+    alert('Position should contain alphabets and may include numbers or special characters.');
+    positionInput.focus();
+    return;
+  }
+
+  // Validation for about field
+  if (about.length < 5 || /^[^a-zA-Z0-9\s]+$/.test(about)) {
+    alert('About should be at least 5 characters long and should contain alphabets and may include numbers or special characters.');
+    aboutInput.focus();
+    return;
+  }
+
+  // Validation for joining date
+const currentDate = new Date();
+const selectedDate = new Date(joiningDate);
+
+if (selectedDate.getFullYear() > currentDate.getFullYear() ||
+    (selectedDate.getFullYear() === currentDate.getFullYear() && selectedDate.getMonth() > currentDate.getMonth()) ||
+    (selectedDate.getFullYear() === currentDate.getFullYear() && selectedDate.getMonth() === currentDate.getMonth() && selectedDate.getDate() > currentDate.getDate())) {
+  alert('Joining date should not be a future date.');
+  joiningDateInput.focus();
+  return;
+}
+
+
   const employeeData = {
     name,
     position,
