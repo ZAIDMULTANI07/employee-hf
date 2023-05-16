@@ -6,18 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Employee Listing Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+
 </head>
 <body>
-    <header class="bg-gray-200 p-4">
+    <header class="bg-gray-200 p-4 flex">
+        <div><a href="\"><img class="h-20 w-20 mx-4" src="./public/EMlogo.png" alt=""/></a></div>
         <div class="container mx-auto">
-            <h1 class="text-3xl font-bold">Employee Listing Page</h1>
+            <h1 class="text-3xl mt-6 font-bold">Employee Listing Page</h1>
         </div>
     </header>
 
     <main class="container mx-auto mt-8">
-        <table class="table-auto w-full">
+        <table class="table-auto w-full border">
             <thead>
-                <tr>
+                <tr class="border bg-gray-100 ">
                     <th class="px-4 py-2">Name</th>
                     <th class="px-4 py-2">Position</th>
                     <th class="px-4 py-2">About</th>
@@ -33,24 +36,31 @@
                     
                     employees.forEach((employee, index) => {
                         const row = document.createElement('tr');
-
+                        
+                        
                         const nameCell = document.createElement('td');
+                        nameCell.classList.add('text-center', 'text-gray-800', 'font-small');
                         nameCell.textContent = employee.name;
-                        row.appendChild(nameCell);
-
+                        row.appendChild(nameCell)             
                         const positionCell = document.createElement('td');
+                        positionCell.classList.add('text-center', 'text-gray-800', 'font-small');
                         positionCell.textContent = employee.position;
                         row.appendChild(positionCell);
 
                         const aboutCell = document.createElement('td');
+                        aboutCell.classList.add('text-center', 'text-gray-800', 'font-small');
                         aboutCell.textContent = employee.about;
                         row.appendChild(aboutCell);
 
                         const dateCell = document.createElement('td');
-                        dateCell.textContent = employee.date;
+                        dateCell.textContent = employee.joiningDate;
+                        dateCell.classList.add('text-center', 'text-gray-800', 'font-small'); // Add CSS classes for styling
                         row.appendChild(dateCell);
 
+                        
+
                         const actionCell = document.createElement('td');
+                        actionCell.classList.add('flex','justify-center','items-center', 'p-2')
                         const removeButton = document.createElement('button');
                         removeButton.textContent = 'Remove';
                         removeButton.classList.add('bg-red-500', 'text-white', 'px-4', 'py-2', 'rounded');
