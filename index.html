@@ -22,20 +22,24 @@
         </a>
             <div class="mb-2 mt-2">
 
-                    <form class="flex mx-4 mt-4 border rounded-xl p-2 ">
-                        <label for="search"><img class="h-5 sm:block hidden w-5 mt-3 mr-2 ml-1" src="./public/search.png" alt="Search"/></label>
-                        <input class='border rounded-xl p-2' type="text" placeholder="Type to Search" id="search" name="search">
-                        <button class="ml-2" type="submit">Search</button>
-                    </form>
+                <form id="search-form" class="flex mx-4 mt-4 border rounded-xl p-2">
+                    <label for="search">
+                      <img class="h-5 sm:block hidden w-5 mt-3 mr-2 ml-1" src="./public/search.png" alt="Search"/>
+                    </label>
+                    <input class="border rounded-xl p-2" type="text" placeholder="Type to Search" id="search" name="search">
+                    <button class="ml-2" type="submit">Search</button>
+                  </form>
+                  
+                  
                     <div class="relative">
                         <h3 class="flex justify-end items-end mr-2 mt-2 cursor-pointer sm:hidden" onclick="toggleNav()">☰ Navigation Menu</h3>
                         <aside id="nav-menu" class="absolute right-0 top-8 w-80 bg-gray-200 rounded-lg p-2 hidden sm:block">
                           <ul>
                             <li>
-                              <a href="/employee-registration.html">Employee Registration Page</a>
+                              <a class="hover:text-blue-600" href="/employee-registration.html">Employee Registration Page</a>
                             </li>
                             <li>
-                              <a href="/employee-listing.html">Employee Listing Page</a>
+                              <a class="hover:text-blue-600" href="/employee-listing.html">Employee Listing Page</a>
                             </li>
                           </ul>
                         </aside>
@@ -46,7 +50,7 @@
 <hr>
 <footer class="fixed bottom-0 left-0 w-full bg-gray-200 text-center p-2">
     <div class="container mx-auto text-center">
-      <p id="employee-name" class="text-gray-700">&copy; 2023 - <span id="employee-name">Employee Management</span></p>
+      <p id="employee-name" class="text-gray-700">&copy; 2023 - <span id="employee-name">Mohd Zaid Multani</span></p>
     </div>
   </footer>
   

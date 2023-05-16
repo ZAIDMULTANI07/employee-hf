@@ -1,4 +1,5 @@
 'use strict';
+
 function toggleNav() {
     var navMenu = document.getElementById("nav-menu");
     navMenu.classList.toggle("hidden");
@@ -62,6 +63,41 @@ table.addEventListener('click', function(event) {
     const employees = JSON.parse(localStorage.getItem('employees'));
     const updatedEmployees = employees.filter(employee => employee.id !== id);
     localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+  }
+});
+
+
+// const searchForm = document.getElementById('search-form');
+// const searchInput = document.getElementById('search');
+
+// searchForm.addEventListener('submit', function (event) {
+//   event.preventDefault();
+
+//   const searchValue = searchInput.value;
+
+//   if (window.find && window.getSelection) {
+//     document.designMode = 'on';
+//     const sel = window.getSelection();
+//     sel.removeAllRanges();
+//     const range = document.createRange();
+//     range.selectNode(document.body);
+//     sel.addRange(range);
+//     const found = window.find(searchValue);
+//     if (!found) {
+//       alert(`No results found for "${searchValue}".`);
+//     }
+//     document.designMode = 'off';
+//   } else {
+//     alert('Your browser does not support this search functionality.');
+//   }
+// });
+
+const searchForm = document.getElementById('search-form');
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const searchTerm = document.getElementById('search').value;
+  if (searchTerm) {
+    window.find(searchTerm);
   }
 });
 
