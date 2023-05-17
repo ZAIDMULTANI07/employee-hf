@@ -1,143 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Employee Listing Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
-
-</head>
-<body>
-    <!-- <header class="bg-gray-200 p-4 flex flex-col sm:flex-row">
-        <div><a href="\"><img class="h-20 w-20 mx-4" src="./public/EMlogo.png" alt=""/></a></div>
-        <div class="container flex">
-            <h1 class="text-3xl mt-6 font-bold">Employee</h1>
-            <h1 class="text-3xl mt-6 font-bold ml-1">Listing</h1>
-            <h1 class="text-3xl mt-6 font-bold ml-1">Page</h1>
-        </div>
-    </header> -->
+  </head>
+  <body>
     <header>
-        <div class="flex justify-between ml-4">
-          <a href="/index.html">
-            <div class="flex mt-4 sm:flex-row flex-col sm:none justify-center items-center">
-              <img class="h-20 w-20" src="./public/EMlogo.png" alt="Logo"/>
-              <div class="flex flex-col ml-3 sm:flex-row justify-center items-center">
-                <h1 class="mt-2 font-bold">Employee</h1>
-                <h1 class="mt-2 font-bold ml-1">Listing</h1>
-                <h1 class="mt-2 font-bold ml-1">Page</h1>
-              </div>
-            </div>
-          </a>
-          <div class="mb-2 mt-2">
-            <form class="flex mx-4 mt-4 border rounded-xl p-2">
-              <label for="search">
-                <img class="h-5 sm:block hidden w-5 mt-3 mr-2 ml-1" src="./public/search.png" alt="Search"/>
-              </label>
-              <input class="border rounded-xl p-2" type="text" placeholder="Type to Search" id="search" name="search">
-              <button class="ml-2" type="submit">Search</button>
-            </form>
-            <div class="relative">
-              <h3 class="flex justify-end items-end mr-2 mt-2 cursor-pointer " onclick="toggleNav()">
-                ☰ Navigation Menu
-              </h3>
-              <aside id="nav-menu" class="absolute right-0 top-8 w-80 bg-gray-200 rounded-lg p-2 hidden ">
-                <ul>
-                  <li>
-                    <a class="hover:text-blue-600" href="/employee-registration.html">Employee Registration Page</a>
-                  </li>
-                  <li>
-                    <a class="hover:text-blue-600" href="/employee-listing.html">Employee Listing Page</a>
-                  </li>
-                </ul>
-              </aside>
+      <div class="flex justify-between ml-4">
+        <a href="/index.html">
+          <div
+            class="flex mt-4 sm:flex-row flex-col sm:none justify-center items-center"
+          >
+            <img class="h-20 w-20" src="./public/EMlogo.png" alt="Logo" />
+            <div
+              class="flex flex-col ml-3 sm:flex-row justify-center items-center"
+            >
+              <h1 class="mt-2 font-bold">Employee</h1>
+              <h1 class="mt-2 font-bold ml-1">Listing</h1>
+              <h1 class="mt-2 font-bold ml-1">Page</h1>
             </div>
           </div>
+        </a>
+        <div class="mb-2 mt-2">
+          <form
+            class="flex mx-4 mt-4 border rounded-xl p-2"
+            onsubmit="searchEmployees(event)"
+          >
+            <label for="search">
+              <img
+                class="h-5 sm:block hidden w-5 mt-3 mr-2 ml-1"
+                src="./public/search.png"
+                alt="Search"
+              />
+            </label>
+            <input
+              class="border rounded-xl p-2"
+              type="text"
+              placeholder="Type to Search"
+              id="search"
+              name="search"
+            />
+            <button class="ml-2" type="submit">Search</button>
+          </form>
+          <div class="relative">
+            <h3
+              class="flex justify-end items-end mr-2 mt-2 cursor-pointer"
+              onclick="toggleNav()"
+            >
+              ☰ Navigation Menu
+            </h3>
+            <aside
+              id="nav-menu"
+              class="absolute right-0 top-8 w-80 bg-gray-200 rounded-lg p-2 hidden"
+            >
+              <ul>
+                <li>
+                  <a
+                    class="hover:text-blue-600"
+                    href="/employee-registration.html"
+                    >Employee Registration Page</a
+                  >
+                </li>
+                <li>
+                  <a class="hover:text-blue-600" href="/employee-listing.html"
+                    >Employee Listing Page</a
+                  >
+                </li>
+              </ul>
+            </aside>
+          </div>
         </div>
-      </header>
-      <script>
-        function toggleNav() {
-          var navMenu = document.getElementById('nav-menu');
-          navMenu.classList.toggle('hidden');
-        }
-      </script>
-      
-      
-      
-<hr>
+      </div>
+    </header>
+    <script>
+      function toggleNav() {
+        var navMenu = document.getElementById("nav-menu");
+        navMenu.classList.toggle("hidden");
+      }
+    </script>
+
+    <hr />
     <main class="container mx-auto mt-8">
-        <table class="table-auto w-full border">
-            <thead>
-                <tr class="border bg-gray-100 ">
-                    <th class="px-4 py-2">Name</th>
-                    <th class="px-4 py-2">Position</th>
-                    <th class="px-4 py-2">About</th>
-                    <th class="px-4 py-2">Joining Date</th>
-                    <th class="px-4 py-2">Action</th>
-                </tr>
-            </thead>
-            <tbody id="employee-table">
-                <!-- Populate table with employee data from local storage -->
-                <script>
-                    const employees = JSON.parse(localStorage.getItem('employees')) || [];
-                    const tableBody = document.querySelector('tbody');
-                    
-                    employees.forEach((employee, index) => {
-                        const row = document.createElement('tr');
-                        
-                        
-                        const nameCell = document.createElement('td');
-                        nameCell.classList.add('text-center', 'text-gray-800', 'font-small');
-                        nameCell.textContent = employee.name;
-                        row.appendChild(nameCell)             
-                        const positionCell = document.createElement('td');
-                        positionCell.classList.add('text-center', 'text-gray-800', 'font-small');
-                        positionCell.textContent = employee.position;
-                        row.appendChild(positionCell);
+      <table class="table-auto w-full border">
+        <thead>
+          <tr class="border bg-gray-100">
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Position</th>
+            <th class="px-4 py-2">About</th>
+            <th class="px-4 py-2">Joining Date</th>
+            <th class="px-4 py-2">Action</th>
+          </tr>
+        </thead>
+        <tbody id="employee-table">
+          <!-- Populate table with employee data from local storage -->
+          <script>
+            const employees =
+              JSON.parse(localStorage.getItem("employees")) || [];
+            const tableBody = document.querySelector("tbody");
 
-                        const aboutCell = document.createElement('td');
-                        aboutCell.classList.add('text-center', 'text-gray-800', 'font-small');
-                        aboutCell.textContent = employee.about;
-                        row.appendChild(aboutCell);
+            employees.forEach((employee, index) => {
+              const row = document.createElement("tr");
 
-                        const dateCell = document.createElement('td');
-                        dateCell.textContent = employee.joiningDate;
-                        dateCell.classList.add('text-center', 'text-gray-800', 'font-small'); // Add CSS classes for styling
-                        row.appendChild(dateCell);
+              const nameCell = document.createElement("td");
+              nameCell.classList.add(
+                "text-center",
+                "text-gray-800",
+                "font-small"
+              );
+              nameCell.textContent = employee.name;
+              row.appendChild(nameCell);
+              const positionCell = document.createElement("td");
+              positionCell.classList.add(
+                "text-center",
+                "text-gray-800",
+                "font-small"
+              );
+              positionCell.textContent = employee.position;
+              row.appendChild(positionCell);
 
-                        
+              const aboutCell = document.createElement("td");
+              aboutCell.classList.add(
+                "text-center",
+                "text-gray-800",
+                "font-small"
+              );
+              aboutCell.textContent = employee.about;
+              row.appendChild(aboutCell);
 
-                        const actionCell = document.createElement('td');
-                        actionCell.classList.add('flex','justify-center','items-center', 'p-2')
-                        const removeButton = document.createElement('button');
-                        removeButton.textContent = 'Remove';
-                        removeButton.classList.add('bg-red-500', 'text-white', 'px-4', 'py-2', 'rounded');
-                        removeButton.addEventListener('click', () => {
-                            employees.splice(index, 1);
-                            localStorage.setItem('employees', JSON.stringify(employees));
-                            row.remove();
-                        });
-                        actionCell.appendChild(removeButton);
-                        row.appendChild(actionCell);
+              const dateCell = document.createElement("td");
+              dateCell.textContent = employee.joiningDate;
+              dateCell.classList.add(
+                "text-center",
+                "text-gray-800",
+                "font-small"
+              ); // Add CSS classes for styling
+              row.appendChild(dateCell);
 
-                        tableBody.appendChild(row);
-                    });
-                </script>
-            </tbody>
-        </table>
-        <!-- <ul id="employee-pagination" class="flex justify-center mt-4"></ul> -->
+              const actionCell = document.createElement("td");
+              actionCell.classList.add(
+                "flex",
+                "justify-center",
+                "items-center",
+                "p-2"
+              );
+              const removeButton = document.createElement("button");
+              removeButton.textContent = "Remove";
+              removeButton.classList.add(
+                "bg-red-500",
+                "text-white",
+                "px-4",
+                "py-2",
+                "rounded"
+              );
+              removeButton.addEventListener("click", () => {
+                employees.splice(index, 1);
+                localStorage.setItem("employees", JSON.stringify(employees));
+                row.remove();
+              });
+              actionCell.appendChild(removeButton);
+              row.appendChild(actionCell);
+
+              tableBody.appendChild(row);
+
+              
+            });
+  
+
+          </script>
+        </tbody>
+      </table>
+      <!-- <ul id="employee-pagination" class="flex justify-center mt-4"></ul> -->
     </main>
     <div class="flex justify-center mt-4" id="employee-pagination"></div>
     <footer class="fixed bottom-0 left-0 w-full bg-gray-200 text-center p-2">
-        <div class="container mx-auto text-center">
-          <p id="employee-name" class="text-gray-700">&copy; 2023 - <span id="employee-name">Mohd Zaid Multani</span></p>
-        </div>
+      <div class="container mx-auto text-center">
+        <p id="employee-name" class="text-gray-700">
+          &copy; 2023 - <span id="employee-name">Mohd Zaid Multani</span>
+        </p>
+      </div>
     </footer>
 
-
-      
-<script src="script.js"></script>
-<script src="pagination.js"></script>
-</body>
+    <script src="search.js"></script>
+    <script src="script.js"></script>
+    <script src="pagination.js"></script>
+  </body>
 </html>
