@@ -19,7 +19,7 @@
           >
             <h1 class="mt-2 font-bold">Employee</h1>
             <h1 class="mt-2 font-bold ml-1">Registration</h1>
-            <h1 class="mt-2 font-bold ml-1">Form</h1>
+            <h1 class="mt-2 font-bold ml-1">Forms</h1>
           </div>
         </div>
       </a>
@@ -44,7 +44,21 @@
           />
           <button class="ml-2" type="submit">Search</button>
         </form>
+
         <div class="relative">
+          <h3 class="flex justify-end items-end mr-2 mt-2 cursor-pointer sm:hidden" onclick="toggleNav()">☰ Navigation Menu</h3>
+          <aside id="nav-menu" class="absolute right-0 top-8 w-80 bg-gray-200 rounded-lg p-2 hidden sm:block">
+            <ul>
+              <li>
+                <a class="hover:text-blue-600" href="/employee-registration.html">Employee Registration Page</a>
+              </li>
+              <li>
+                <a class="hover:text-blue-600" href="/employee-listing.html">Employee Listing Page</a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+        <!-- <div class="relative">
           <h3
             class="flex justify-end items-end mr-2 mt-2 cursor-pointer"
             onclick="toggleNav()"
@@ -70,7 +84,14 @@
               </li>
             </ul>
           </aside>
-        </div>
+        </div> -->
+<script>
+  function toggleNav() {
+      var navMenu = document.getElementById("nav-menu");
+      navMenu.classList.toggle("hidden");
+    }
+</script>
+
       </div>
     </div>
   </header>
